@@ -13,12 +13,14 @@ export const generateToken = (res, user, message) => {
     return res.status(200)
         .cookie("token", token, {
             httpOnly: true,
-            sameSite: 'strict', 
+            secure: true,      // deploy environment me HTTPS ke liye
+            sameSite: 'none',  // cross-origin allowed
             maxAge: 24 * 60 * 60 * 1000, // 1 day
-        }).json({
+        })
+        .json({
             success: true,
             message,
             user
-        })
+        });
 
 }
