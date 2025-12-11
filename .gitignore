@@ -1,0 +1,19 @@
+# Node modules folder
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# OS specific
+.DS_Store
+
+# Optional: build folder (agar ho)
+build/
+
+# Optional: temporary files
+tmp/
