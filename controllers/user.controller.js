@@ -90,12 +90,14 @@ export const logout = async (_, res) => {
     try {
         const isProduction = process.env.NODE_ENV === "production";
 
-        res.clearCookie("token", {
+        const cookieOptions = {
             httpOnly: true,
             secure: isProduction,
-            sameSite: isProduction ? "none" : "lax",
-            path: "/" //  match with login
-        });
+            sameSite: "none",  // cross-site allowed
+            path: "/"
+        };
+
+        res.clearCookie("token", cookieOptions);
 
         return res.status(200).json({
             success: true,

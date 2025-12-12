@@ -12,13 +12,15 @@ export const generateToken = (res, user, message) => {
 
     const isProduction = process.env.NODE_ENV === "production";
 
-    res.cookie("token", token, {
+    const cookieOptions = {
         httpOnly: true,
-        secure: isProduction,
-        sameSite: isProduction ? "none" : "lax",
-        path: "/", //  ye zaroori hai
+        secure: isProduction,    // must be true in production for cross-site
+        sameSite: "none",        // cross-site cookie allowed
+        path: "/",
         maxAge: 24 * 60 * 60 * 1000
-    });
+    };
+
+    res.cookie("token", token, cookieOptions);
 
     return res.status(200).json({
         success: true,
