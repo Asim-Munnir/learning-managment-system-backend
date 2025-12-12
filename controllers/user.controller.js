@@ -88,24 +88,28 @@ export const login = async (req, res) => {
 // Logout code here
 export const logout = async (_, res) => {
     try {
-        res.clearCookie('token', {
+        const isProduction = process.env.NODE_ENV === "production";
+
+        res.clearCookie("token", {
             httpOnly: true,
-            sameSite: 'strict',
+            secure: isProduction,           // match login ke sath
+            sameSite: isProduction ? "none" : "lax",
         });
 
         return res.status(200).json({
             success: true,
-            message: 'Logout successfully.'
-        })
+            message: "Logout successfully."
+        });
 
     } catch (error) {
         console.log(error);
         return res.status(500).json({
             success: false,
             message: "Failed to logout"
-        })
+        });
     }
-}
+};
+
 
 export const getUserprofile = async (req, res) => {
     try {
@@ -161,8 +165,8 @@ export const updateProfile = async (req, res) => {
         const cloudResponse = await uploadMedia(profilePhoto.path);
         const photoUrl = cloudResponse.secure_url
 
-        const updatedData = {name, photoUrl}
-        const updatedUser = await User.findByIdAndUpdate(userId, updatedData, {new: true}).select("-password")
+        const updatedData = { name, photoUrl }
+        const updatedUser = await User.findByIdAndUpdate(userId, updatedData, { new: true }).select("-password")
 
         return res.status(200).json({
             success: true,
