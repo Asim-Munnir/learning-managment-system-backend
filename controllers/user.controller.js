@@ -93,7 +93,7 @@ export const logout = async (_, res) => {
         const cookieOptions = {
             httpOnly: true,
             secure: isProduction,
-            sameSite: "none",  // cross-site allowed
+            sameSite: "None",  // cross-site allowed
             path: "/"
         };
 

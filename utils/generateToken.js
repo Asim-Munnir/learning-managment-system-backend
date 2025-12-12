@@ -15,7 +15,7 @@ export const generateToken = (res, user, message) => {
     const cookieOptions = {
         httpOnly: true,
         secure: isProduction,    // must be true in production for cross-site
-        sameSite: "none",        // cross-site cookie allowed
+        sameSite: "None",        // cross-site cookie allowed
         path: "/",
         maxAge: 24 * 60 * 60 * 1000
     };
