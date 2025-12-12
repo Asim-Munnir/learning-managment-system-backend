@@ -17,6 +17,7 @@ export const generateToken = (res, user, message) => {
         secure: isProduction,    // must be true in production for cross-site
         sameSite: "None",        // cross-site cookie allowed
         path: "/",
+        domain: ".up.railway.app",
         maxAge: 24 * 60 * 60 * 1000
     };
 
