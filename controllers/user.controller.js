@@ -92,8 +92,9 @@ export const logout = async (_, res) => {
 
         res.clearCookie("token", {
             httpOnly: true,
-            secure: isProduction,           // match login ke sath
+            secure: isProduction,
             sameSite: isProduction ? "none" : "lax",
+            path: "/" //  match with login
         });
 
         return res.status(200).json({

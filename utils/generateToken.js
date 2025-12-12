@@ -14,9 +14,10 @@ export const generateToken = (res, user, message) => {
 
     res.cookie("token", token, {
         httpOnly: true,
-        secure: isProduction,           // only production me true
+        secure: isProduction,
         sameSite: isProduction ? "none" : "lax",
-        maxAge: 24 * 60 * 60 * 1000,
+        path: "/", //  ye zaroori hai
+        maxAge: 24 * 60 * 60 * 1000
     });
 
     return res.status(200).json({
