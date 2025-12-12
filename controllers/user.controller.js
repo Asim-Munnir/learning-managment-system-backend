@@ -95,7 +95,8 @@ export const logout = async (_, res) => {
             secure: isProduction,
             sameSite: "None",  // cross-site allowed
             domain: ".up.railway.app",
-            path: "/"
+            path: "/",
+            maxAge: 0
         };
 
         res.clearCookie("token", cookieOptions);
