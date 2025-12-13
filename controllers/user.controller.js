@@ -94,7 +94,6 @@ export const logout = async (_, res) => {
             httpOnly: true,
             secure: isProduction,
             sameSite: "None",  // cross-site allowed
-            domain: ".up.railway.app",
             path: "/",
             maxAge: 0
         };
